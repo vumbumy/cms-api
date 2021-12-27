@@ -1,0 +1,178 @@
+openapi: 3.0.0
+info:
+  title: Common API
+  version: "1.0.0"
+tags:
+  - name: account
+    description: 사용자 인증 및 가입, 로그인, 탈퇴 등
+paths:
+  /signin:
+    post:
+      summary: 이메일, 모바일 로그인
+      tags:
+        - account
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginForm'
+      responses:
+        '200':
+          description: OK
+  /signup:
+    post:
+      summary: 이메일, 모바일 가입
+      tags:
+        - account
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: OK
+  /verify:
+    get:
+      summary: 이메일, 모바일 인증
+      tags:
+        - account
+      parameters:
+        - $ref: '#/components/parameters/hashCode'
+      responses:
+        '200':
+          description: OK
+  /search/account:
+    post:
+      summary: 계정 찾기
+      tags:
+        - account
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindForm'
+      responses:
+        '200':
+          description: OK
+  /invite:
+    get:
+      summary: 사용자 초대
+      tags:
+        - account
+      parameters:
+        - $ref: '#/components/parameters/email'
+        - $ref: '#/components/parameters/mobile'
+      responses:
+        '200':
+          description: OK
+  /reset/account:
+    post:
+      summary: 비밀번호 초기화
+      tags:
+        - account
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindForm'
+      responses:
+        '200':
+          description: OK
+  /me:
+    get:
+      summary: 내 정보 조회
+      tags:
+        - account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      summary: 내 정보 수정
+      tags:
+        - account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: 탈퇴
+      tags:
+        - account
+      responses:
+        '200':
+          description: OK
+      
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "test@example.com"
+        mobile:
+          type: string
+          example: "01012345678"
+        name:
+          type: string
+          example: "홍길동"
+        password:
+          type: string
+          example: "********"
+    FindForm:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "test@example.com"
+        mobile:
+          type: string
+          example: "01012345678"
+        name:
+          type: string
+          example: "홍길동"
+    LoginForm:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "test@example.com"
+        mobile:
+          type: string
+          example: "01012345678"
+        password:
+          type: string
+          format: "password"
+          example: "password"
+  parameters:
+    hashCode:
+      name: code
+      in: query
+      schema:
+        type: string
+      example: C3499C2729730A7F807EFB8676A92DCB6F8A3F8F
+    email:
+      name: email
+      in: query
+      schema:
+        type: string
+      example: "test@example.com"
+    mobile:
+      name: mobile
+      in: query
+      schema:
+        type: string
+      example: "01012345678"
