@@ -1,16 +1,23 @@
 openapi: 3.0.0
 info:
-  title: Common API
+  title: Account
+  description: 사용자 인증 및 가입, 로그인, 탈퇴 등
   version: "1.0.0"
 tags:
+  - name: inflow
+    description: 사용자 유입
+  - name: secured
+    description: 인증된
   - name: account
-    description: 사용자 인증 및 가입, 로그인, 탈퇴 등
+    description: 내 계정 찾기
+  - name: users
+    description: 사용자 관리
 paths:
   /signin:
     post:
       summary: 이메일, 모바일 로그인
       tags:
-        - account
+        - inflow
       requestBody:
         required: true
         content: 
@@ -24,7 +31,7 @@ paths:
     post:
       summary: 이메일, 모바일 가입
       tags:
-        - account
+        - inflow
       requestBody:
         required: true
         content: 
@@ -38,7 +45,7 @@ paths:
     get:
       summary: 이메일, 모바일 인증
       tags:
-        - account
+        - inflow
       parameters:
         - $ref: '#/components/parameters/hashCode'
       responses:
@@ -61,8 +68,10 @@ paths:
     get:
       summary: 사용자 초대
       tags:
-        - account
+        - secured
+        - inflow
       parameters:
+        - $ref: '#/components/parameters/hashCode'
         - $ref: '#/components/parameters/email'
         - $ref: '#/components/parameters/mobile'
       responses:
@@ -85,7 +94,7 @@ paths:
     get:
       summary: 내 정보 조회
       tags:
-        - account
+        - secured
       responses:
         '200':
           description: OK
@@ -96,7 +105,7 @@ paths:
     put:
       summary: 내 정보 수정
       tags:
-        - account
+        - secured
       requestBody:
         required: true
         content:
@@ -109,7 +118,41 @@ paths:
     delete:
       summary: 탈퇴
       tags:
-        - account
+        - secured
+      responses:
+        '200':
+          description: OK
+  /users:
+    post:
+      tags:
+        - "users"
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - "users"
+      responses:
+        '200':
+          description: OK
+    get:
+      tags:
+        - "users"
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - "users"
+      responses:
+        '200':
+          description: OK
+  /users/{userNo}:
+    get:
+      tags:
+        - "users"
+      parameters:
+        - $ref: '#/components/parameters/userNo'
       responses:
         '200':
           description: OK
@@ -160,10 +203,11 @@ components:
   parameters:
     hashCode:
       name: code
+      description: 8 characters hash
       in: query
       schema:
         type: string
-      example: C3499C2729730A7F807EFB8676A92DCB6F8A3F8F
+      example: 3106cdf2
     email:
       name: email
       in: query
@@ -176,3 +220,10 @@ components:
       schema:
         type: string
       example: "01012345678"
+    userNo:
+      required: true
+      name: userNo
+      in: path
+      schema:
+        type: integer
+        example: 10
