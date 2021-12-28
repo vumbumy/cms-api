@@ -1,0 +1,194 @@
+openapi: 3.0.0
+info:
+  title: Group
+  version: "1.0.0"
+tags:
+  - name: groups
+    description: 사용자 그룹 관리
+  - name: projects
+    description: 프로젝트 관리
+paths:
+  /groups:
+    post:
+      tags:
+        - "groups"
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - "groups"
+      responses:
+        '200':
+          description: OK
+    get:
+      tags:
+        - "groups"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupList'
+    delete:
+      tags:
+        - "groups"
+      responses:
+        '200':
+          description: OK
+  /groups/{groupNo}:
+    get:
+      tags:
+        - "groups"
+      parameters:
+        - $ref: '#/components/parameters/groupNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+  /groups/{groupNo}/permissions:
+    put:
+      tags:
+        - "groups"
+      responses:
+        '200':
+          description: OK
+  /projects:
+    post:
+      tags:
+        - "projects"
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - "projects"
+      responses:
+        '200':
+          description: OK
+    get:
+      tags:
+        - "projects"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+    delete:
+      tags:
+        - "projects"
+      responses:
+        '200':
+          description: OK
+  /projects/{projectNo}:
+    get:
+      tags:
+        - "projects"
+      parameters:
+        - $ref: '#/components/parameters/projectNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{projectNo}/permissions:
+    put:
+      tags:
+        - "projects"
+      parameters:
+        - $ref: '#/components/parameters/projectNo'  
+      responses:
+        '200':
+          description: OK  
+      
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          example: "test@example.com"
+        mobile:
+          type: string
+          example: "01012345678"
+    Permission:
+      type: object
+      properties:
+        userNo:
+          type: integer
+          example: 11
+        groupNo:
+          type: integer
+          example: 202
+        accessRight:
+          type: string
+          example: "WRITE"
+      discriminator:
+        propertyName: pet_type
+        
+    Group:
+      type: object
+      properties:
+        groupName:
+          type: string
+          example: "Group A"
+        userList:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    GroupList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Group'
+    Project:
+      type: object
+      properties:
+        groupName:
+          type: string
+          example: "Project X"
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+    ProjectList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+  parameters:
+    hashCode:
+      name: code
+      description: 8 characters hash
+      in: query
+      schema:
+        type: string
+      example: 3106cdf2
+    userNo:
+      required: true
+      name: userNo
+      in: path
+      schema:
+        type: integer
+        example: 202
+    groupNo:
+      required: true
+      name: groupNo
+      in: path
+      schema:
+        type: integer
+        example: 202
+    projectNo:
+      required: true
+      name: projectNo
+      in: path
+      schema:
+        type: integer
+        example: 3003

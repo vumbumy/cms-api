@@ -23,7 +23,7 @@ paths:
         content: 
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginForm'
+              $ref: '#/components/schemas/User'
       responses:
         '200':
           description: OK
@@ -141,6 +141,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
     delete:
       tags:
         - "users"
@@ -156,8 +160,11 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
       
-
 components:
   schemas:
     User:
@@ -169,11 +176,9 @@ components:
         mobile:
           type: string
           example: "01012345678"
-        name:
-          type: string
-          example: "홍길동"
         password:
           type: string
+          format: "password"
           example: "********"
     FindForm:
       type: object
@@ -184,22 +189,10 @@ components:
         mobile:
           type: string
           example: "01012345678"
-        name:
-          type: string
-          example: "홍길동"
-    LoginForm:
-      type: object
-      properties:
-        email:
-          type: string
-          example: "test@example.com"
-        mobile:
-          type: string
-          example: "01012345678"
-        password:
-          type: string
-          format: "password"
-          example: "password"
+    UserList:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
   parameters:
     hashCode:
       name: code
@@ -226,4 +219,4 @@ components:
       in: path
       schema:
         type: integer
-        example: 10
+        example: 11
