@@ -3,27 +3,27 @@ info:
   title: Group
   version: "1.0.0"
 tags:
-  - name: groups
+  - name: Group
     description: 사용자 그룹 관리
-  - name: projects
+  - name: Project
     description: 프로젝트 관리
 paths:
   /groups:
     post:
       tags:
-        - "groups"
+        - Group
       responses:
         '200':
           description: OK
     put:
       tags:
-        - "groups"
+        - Group
       responses:
         '200':
           description: OK
     get:
       tags:
-        - "groups"
+        - Group
       responses:
         '200':
           description: OK
@@ -33,14 +33,14 @@ paths:
                 $ref: '#/components/schemas/GroupList'
     delete:
       tags:
-        - "groups"
+        - Group
       responses:
         '200':
           description: OK
   /groups/{groupNo}:
     get:
       tags:
-        - "groups"
+        - Group
       parameters:
         - $ref: '#/components/parameters/groupNo'
       responses:
@@ -53,26 +53,26 @@ paths:
   /groups/{groupNo}/permissions:
     put:
       tags:
-        - "groups"
+        - Group
       responses:
         '200':
           description: OK
   /projects:
     post:
       tags:
-        - "projects"
+        - Project
       responses:
         '200':
           description: OK
     put:
       tags:
-        - "projects"
+        - Project
       responses:
         '200':
           description: OK
     get:
       tags:
-        - "projects"
+        - Project
       responses:
         '200':
           description: OK
@@ -82,14 +82,14 @@ paths:
                 $ref: '#/components/schemas/ProjectList'
     delete:
       tags:
-        - "projects"
+        - Project
       responses:
         '200':
           description: OK
   /projects/{projectNo}:
     get:
       tags:
-        - "projects"
+        - Project
       parameters:
         - $ref: '#/components/parameters/projectNo'
       responses:
@@ -102,7 +102,7 @@ paths:
   /projects/{projectNo}/permissions:
     put:
       tags:
-        - "projects"
+        - Project
       parameters:
         - $ref: '#/components/parameters/projectNo'  
       responses:

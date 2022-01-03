@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Constant
+  description: Enum class values
+  version: "1.0.0"
+tags:
+  - name: Role
+    description: 사용자 서비스 권한
+  - name: Status
+    description: 데이터 상태
+  - name: Type
+    description: 데이터 타입
+paths:
+  /roles:
+    get:
+      tags:
+        - Role
+      responses:
+        '200':
+          description: OK
+  /status:
+    get:
+      tags:
+        - Status
+      responses:
+        '200':
+          description: OK
+  /types/data-columns:
+    get:
+      tags:
+      - Type
+      responses:
+        '200':
+          description: OK
+  /types/events:
+    get:
+      tags:
+      - Type
+      responses:
+        '200':
+          description: OK

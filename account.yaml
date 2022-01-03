@@ -4,7 +4,7 @@ info:
   description: 사용자 인증 및 가입, 로그인, 탈퇴 등
   version: "1.0.0"
 tags:
-  - name: inflow
+  - name: Inflow
     description: 사용자 유입
   - name: secured
     description: 인증된
@@ -17,7 +17,7 @@ paths:
     post:
       summary: 이메일, 모바일 로그인
       tags:
-        - inflow
+        - Inflow
       requestBody:
         required: true
         content: 
@@ -31,7 +31,7 @@ paths:
     post:
       summary: 이메일, 모바일 가입
       tags:
-        - inflow
+        - Inflow
       requestBody:
         required: true
         content: 
@@ -45,7 +45,7 @@ paths:
     get:
       summary: 이메일, 모바일 인증
       tags:
-        - inflow
+        - Inflow
       parameters:
         - $ref: '#/components/parameters/hashCode'
       responses:
@@ -69,7 +69,7 @@ paths:
       summary: 사용자 초대
       tags:
         - secured
-        - inflow
+        - Inflow
       parameters:
         - $ref: '#/components/parameters/hashCode'
         - $ref: '#/components/parameters/email'
