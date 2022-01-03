@@ -6,11 +6,11 @@ info:
 tags:
   - name: Inflow
     description: 사용자 유입
-  - name: secured
+  - name: Secured
     description: 인증된
-  - name: account
+  - name: Account
     description: 내 계정 찾기
-  - name: users
+  - name: User
     description: 사용자 관리
 paths:
   /signin:
@@ -55,7 +55,7 @@ paths:
     post:
       summary: 계정 찾기
       tags:
-        - account
+        - Account
       requestBody:
         content: 
           application/json:
@@ -68,7 +68,7 @@ paths:
     get:
       summary: 사용자 초대
       tags:
-        - secured
+        - Secured
         - Inflow
       parameters:
         - $ref: '#/components/parameters/hashCode'
@@ -81,7 +81,7 @@ paths:
     post:
       summary: 비밀번호 초기화
       tags:
-        - account
+        - Account
       requestBody:
         content: 
           application/json:
@@ -94,7 +94,7 @@ paths:
     get:
       summary: 내 정보 조회
       tags:
-        - secured
+        - Secured
       responses:
         '200':
           description: OK
@@ -105,7 +105,7 @@ paths:
     put:
       summary: 내 정보 수정
       tags:
-        - secured
+        - Secured
       requestBody:
         required: true
         content:
@@ -118,26 +118,26 @@ paths:
     delete:
       summary: 탈퇴
       tags:
-        - secured
+        - Secured
       responses:
         '200':
           description: OK
   /users:
     post:
       tags:
-        - "users"
+        - User
       responses:
         '200':
           description: OK
     put:
       tags:
-        - "users"
+        - User
       responses:
         '200':
           description: OK
     get:
       tags:
-        - "users"
+        - User
       responses:
         '200':
           description: OK
@@ -147,14 +147,14 @@ paths:
                 $ref: '#/components/schemas/UserList'
     delete:
       tags:
-        - "users"
+        - User
       responses:
         '200':
           description: OK
   /users/{userNo}:
     get:
       tags:
-        - "users"
+        - User
       parameters:
         - $ref: '#/components/parameters/userNo'
       responses:
