@@ -3,32 +3,35 @@ info:
   title: Event
   version: "1.0.0"
 tags:
-  - name: Event
-    description: 이벤트
+  # - name: Event
+    # description: 이벤트
   - name: KPI
     description: 데이터 지표 (Event Performance Indicator)
   - name: Rule
     description: 데이터 규칙 (Event Schedule)
+  - name: Notice
+    description: 데이터 알림
 paths:
   /events:
     post:
-      summary: KPI 및 Rule 등록
+      summary: KPI, Rule, Notice 등록
       tags:
         - KPI
         - Rule
+        - Notice
       responses:
         '200':
           description: OK
-    get:
-      summary: Event 및 Record 리스트
-      tags:
-        - Event
-      responses:
-        '200':
-          description: OK
+    # get:
+      # summary: Event 및 Record 리스트
+      # tags:
+        # - Event
+      # responses:
+        # '200':
+          # description: OK
   /kpis:
     get:
-      summary: KPI 및 Rul
+      summary: KPI 목록
       tags:
         - KPI
       responses:
@@ -36,9 +39,17 @@ paths:
           description: OK
   /rules:
     get:
-      summary: KPI 및 Rul
+      summary: Rule 목록
       tags:
         - Rule
+      responses:
+        '200':
+          description: OK
+  /notices:
+    get:
+      summary: Notice 목록
+      tags:
+        - Notice
       responses:
         '200':
           description: OK
