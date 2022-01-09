@@ -25,14 +25,14 @@ paths:
       responses:
         '200':
           description: OK
-  /types/data-columns:
+  /types/data-column:
     get:
       tags:
       - Type
       responses:
         '200':
           description: OK
-  /types/events:
+  /types/process:
     get:
       tags:
       - Type

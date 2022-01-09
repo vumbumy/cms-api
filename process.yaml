@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Process
+  version: "1.0.0"
+tags:
+  # - name: Event
+    # description: 이벤트
+  - name: KPI
+    description: 데이터 지표 (Event Performance Indicator)
+  - name: Rule
+    description: 데이터 규칙 (Event Schedule)
+  - name: Notice
+    description: 데이터 알림
+paths:
+  /processes:
+    post:
+      summary: KPI, Rule, Notice 등록
+      tags:
+        - KPI
+        - Rule
+        - Notice
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Process'
+      responses:
+        '200':
+          description: OK
+    # get:
+      # summary: Event 및 Record 리스트
+      # tags:
+        # - Event
+      # responses:
+        # '200':
+          # description: OK
+  /kpis:
+    get:
+      summary: KPI 목록
+      tags:
+        - KPI
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KPI'
+  /kpis/{kpiNo}:
+    get:
+      summary: KPI 정보 및 결과
+      tags:
+        - KPI
+      parameters:
+        - $ref: '#/components/parameters/kpiNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KPI'
+  /rules:
+    get:
+      summary: Rule 목록
+      tags:
+        - Rule
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rule'
+  /rules/{ruleNo}:
+    get:
+      summary: Rule 정보 및 결과
+      tags:
+        - Rule
+      parameters:
+        - $ref: '#/components/parameters/ruleNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+  /notices:
+    get:
+      summary: Notice 목록
+      tags:
+        - Notice
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notice'
+  /notices/{noticeNo}:
+    get:
+      summary: Notice 정보 및 결과
+      tags:
+        - Notice
+      parameters:
+        - $ref: '#/components/parameters/noticeNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notice'
+
+components:
+  schemas:
+    Process:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          example: "KPI / RULE / NOTI"
+        param:
+          type: string
+          example: "{}"
+    Condition:
+      type: object
+      properties:
+        colNo:
+          type: integer
+        op:
+          type: string
+          example: "lt / le / eq / ne / gt / ge"
+        val:
+          type: string
+    KPI:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+    Rule:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+    Notice:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+  parameters:
+    hashCode:
+      name: code
+      description: 8 characters hash
+      in: query
+      schema:
+        type: string
+      example: 3106cdf2
+    ruleNo:
+      required: true
+      name: ruleNo
+      in: path
+      schema:
+        type: integer
+        example: 1
+    kpiNo:
+      required: true
+      name: kpiNo
+      in: path
+      schema:
+        type: integer
+        example: 2
+    noticeNo:
+      required: true
+      name: noticeNo
+      in: path
+      schema:
+        type: integer
+        example: 3

@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Category
+  version: "1.0.0"
+tags:
+  - name: Category
+  - name: Tag
+paths:
+  /tags:
+    post:
+      summary: Tag 등록
+      tags:
+        - Tag
+      parameters:
+        - $ref: '#/components/parameters/hashTag'
+      responses:
+        '200':
+          description: OK
+    get:
+      summary: Tag 목록
+      responses:
+        '200':
+          description: OK
+  /tags/search:
+    post:
+      summary: Tag 검색
+      tags:
+        - Tag
+      parameters:
+        - $ref: '#/components/parameters/keyword'
+      responses:
+        '200':
+          description: OK
+
+components:
+  parameters:
+    hashTag:
+      name: tag
+      in: query
+      schema:
+        type: string
+    keyword:
+      name: keyword
+      in: query
+      schema:
+        type: string
