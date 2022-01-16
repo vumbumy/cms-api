@@ -1,2 +1,2 @@
-# CMS API
+# CMS Swagger
 
