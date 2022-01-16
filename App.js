@@ -1,13 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
-
 import 'antd/dist/antd.css';
 
 import SwaggerUI from "swagger-ui-react"
 import "swagger-ui-react/swagger-ui.css"
 
-import {Layout, Row, Col, Tabs} from 'antd';
+import {Row, Col, Tabs} from 'antd';
 
-const { Header, Content, Footer } = Layout;
 const { TabPane } = Tabs;
 
 import Account from './assets/api/account.yaml'
@@ -19,9 +16,7 @@ import Process from './assets/api/process.yaml'
 
 export default function App() {
   return (
-      <Layout className="layout">
-        <Content style={{ padding: '0 50px' }}>
-      <Row gutter={16}>
+      <Row style={{ padding: '0 1%' }}>
         <Col span={24}>
           <Tabs defaultActiveKey="1">
             <TabPane tab="Account" key="1">
@@ -45,16 +40,5 @@ export default function App() {
           </Tabs>
         </Col>
       </Row>
-        </Content>
-      </Layout>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
