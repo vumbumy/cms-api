@@ -18,6 +18,8 @@ paths:
           description: OK
     get:
       summary: Tag 목록
+      tags:
+        - Tag
       responses:
         '200':
           description: OK
@@ -31,11 +33,33 @@ paths:
       responses:
         '200':
           description: OK
+  /categories:
+    post:
+      summary: Category 등록
+      tags:
+        - Category
+      parameters:
+        - $ref: '#/components/parameters/category'
+      responses:
+        '200':
+          description: OK
+    get:
+      summary: Category 목록
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
 
 components:
   parameters:
     hashTag:
       name: tag
+      in: query
+      schema:
+        type: string
+    category:
+      name: category
       in: query
       schema:
         type: string

@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Billing
+  version: "1.0.0"
+tags:
+  - name: Balance
+  - name: Transaction
+  - name: Credit
+  - name: Invoice
+paths:
+  /balance:
+    post:
+      summary: Balance 등록
+      tags:
+        - Balance
+      responses:
+        '200':
+          description: OK
+  /transactions:
+    post:
+      summary: Transaction 등록
+      tags:
+        - Transaction
+      responses:
+        '200':
+          description: OK
+  /transactions/{transactionNo}:
+    get:
+      summary: Transaction 조회
+      tags:
+        - Transaction
+      parameters:
+        - $ref: '#/components/parameters/transactionNo'
+      responses:
+        '200':
+          description: OK
+  /credits:
+    post:
+      summary: Credit 등록
+      tags:
+        - Credit
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Credit 수정
+      tags:
+        - Credit
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Credit 삭제
+      tags:
+        - Credit
+      responses:
+        '200':
+          description: OK
+  /credits/{creditNo}:
+    get:
+      summary: Credit 조회
+      tags:
+        - Credit
+      parameters:
+        - $ref: '#/components/parameters/creditNo'
+      responses:
+        '200':
+          description: OK
+  /invoices:
+    post:
+      summary: Invoice 등록
+      tags:
+        - Invoice
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Invoice 수정
+      tags:
+        - Invoice
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Invoice 삭제
+      tags:
+        - Invoice
+      responses:
+        '200':
+          description: OK
+  /invoices/{invoiceNo}:
+    get:
+      summary: Invoice 조회
+      tags:
+        - Invoice
+      parameters:
+        - $ref: '#/components/parameters/invoiceNo'
+      responses:
+        '200':
+          description: OK
+
+components:
+  parameters:
+    userNo:
+      required: true
+      name: userNo
+      in: path
+      schema:
+        type: integer
+        example: 11
+    transactionNo:
+      required: true
+      name: transactionNo
+      in: path
+      schema:
+        type: integer
+        example: 310
+    creditNo:
+      required: true
+      name: creditNo
+      in: path
+      schema:
+        type: integer
+        example: 320
+    invoiceNo:
+      required: true
+      name: invoiceNo
+      in: path
+      schema:
+        type: integer
+        example: 330

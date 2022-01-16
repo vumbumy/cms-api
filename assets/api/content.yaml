@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: Content
+  version: "1.0.0"
+tags:
+  - name: Record
+  - name: Task
+  - name: Workflow
+  - name: Report
+paths:
+  /records:
+    post:
+      summary: Record 등록
+      tags:
+        - Record
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Record 수정
+      tags:
+        - Record
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Record 삭제
+      tags:
+        - Record
+      responses:
+        '200':
+          description: OK
+  /records/{recordNo}:
+    get:
+      summary: Record 조회
+      tags:
+        - Record
+      parameters:
+        - $ref: '#/components/parameters/recordNo'
+      responses:
+        '200':
+          description: OK
+  /tasks:
+    post:
+      summary: Task 등록
+      tags:
+        - Task
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Task 수정
+      tags:
+        - Task
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Task 삭제
+      tags:
+        - Task
+      responses:
+        '200':
+          description: OK
+  /tasks/{taskNo}:
+    get:
+      summary: Task 조회
+      tags:
+        - Task
+      parameters:
+        - $ref: '#/components/parameters/taskNo'
+      responses:
+        '200':
+          description: OK
+  /workflows:
+    post:
+      summary: Workflow 등록
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Workflow 수정
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Workflow 삭제
+      tags:
+        - Workflow
+      responses:
+        '200':
+          description: OK
+  /workflows/{workflowNo}:
+    get:
+      summary: Workflow 조회
+      tags:
+        - Workflow
+      parameters:
+        - $ref: '#/components/parameters/workflowNo'
+      responses:
+        '200':
+          description: OK
+  /reports:
+    post:
+      summary: Report 등록
+      tags:
+        - Report
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Report 수정
+      tags:
+        - Report
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Report 삭제
+      tags:
+        - Report
+      responses:
+        '200':
+          description: OK
+  /reports/{reportNo}:
+    get:
+      summary: Report 조회
+      tags:
+        - Report
+      parameters:
+        - $ref: '#/components/parameters/reportNo'
+      responses:
+        '200':
+          description: OK
+
+components:
+  parameters:
+    recordNo:
+      required: true
+      name: recordNo
+      in: path
+      schema:
+        type: integer
+        example: 99
+    taskNo:
+      required: true
+      name: taskNo
+      in: path
+      schema:
+        type: integer
+        example: 999
+    workflowNo:
+      required: true
+      name: workflowNo
+      in: path
+      schema:
+        type: integer
+        example: 9999
+    reportNo:
+      required: true
+      name: reportNo
+      in: path
+      schema:
+        type: integer
+        example: 10000

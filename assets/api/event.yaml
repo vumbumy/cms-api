@@ -13,10 +13,28 @@ paths:
         - Event
       requestBody:
         required: true
-        content: 
+        content:
           application/json:
             schema:
               $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: OK
+  /events/{eventNo}:
+    get:
+      summary: Event 조회
+      tags:
+        - Event
+      parameters:
+        - $ref: '#/components/parameters/eventNo'
+      responses:
+        '200':
+          description: OK
+  /events/search:
+    get:
+      summary: Event 검색
+      tags:
+        - Event
       responses:
         '200':
           description: OK
@@ -31,3 +49,11 @@ components:
           example: "imp / clk"
         value:
           type: string
+  parameters:
+    eventNo:
+      required: true
+      name: userNo
+      in: path
+      schema:
+        type: integer
+        example: 11
