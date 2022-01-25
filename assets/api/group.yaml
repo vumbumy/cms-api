@@ -3,11 +3,66 @@ info:
   title: Group
   version: "1.0.0"
 tags:
+  - name: Organization
+    description: 조직 관리
   - name: Group
     description: 사용자 그룹 관리
   - name: Project
     description: 프로젝트 관리
 paths:
+  /orgs:
+    post:
+      tags:
+        - Organization
+      responses:
+        '200':
+          description: OK
+    put:
+      tags:
+        - Organization
+      responses:
+        '200':
+          description: OK
+    get:
+      tags:
+        - Organization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+    delete:
+      tags:
+        - Organization
+      responses:
+        '200':
+          description: OK
+  /orgs/{orgNo}:
+    get:
+      tags:
+        - Organization
+      parameters:
+        - $ref: '#/components/parameters/orgNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+  /orgs/{orgNo}/permissions:
+    put:
+      tags:
+        - Organization
+      parameters:
+        - $ref: '#/components/parameters/orgNo'
+      responses:
+        '200':
+          description: OK
   /groups:
     post:
       tags:
@@ -30,7 +85,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GroupList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
     delete:
       tags:
         - Group
@@ -79,7 +136,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProjectList'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
     delete:
       tags:
         - Project
@@ -104,11 +163,11 @@ paths:
       tags:
         - Project
       parameters:
-        - $ref: '#/components/parameters/projectNo'  
+        - $ref: '#/components/parameters/projectNo'
       responses:
         '200':
-          description: OK  
-      
+          description: OK
+
 components:
   schemas:
     User:
@@ -134,7 +193,12 @@ components:
           example: "WRITE"
       discriminator:
         propertyName: pet_type
-        
+    Organization:
+      type: object
+      properties:
+        orgName:
+          type: string
+          example: "Org Corp"
     Group:
       type: object
       properties:
@@ -145,10 +209,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/User'
-    GroupList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Group'
     Project:
       type: object
       properties:
@@ -159,10 +219,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Permission'
-    ProjectList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Project'
+
   parameters:
     hashCode:
       name: code
@@ -177,7 +234,14 @@ components:
       in: path
       schema:
         type: integer
-        example: 202
+        example: 11
+    orgNo:
+      required: true
+      name: orgNo
+      in: path
+      schema:
+        type: integer
+        example: 40004
     groupNo:
       required: true
       name: groupNo
