@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Log
+  version: "1.0.0"
+tags:
+  - name: Log
+    description: 사용자 이벤트
+paths:
+  /logs:
+    post:
+      summary: Log 등록
+      tags:
+        - Log
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Log'
+      responses:
+        '200':
+          description: OK
+  /logs/{eventNo}:
+    get:
+      summary: Log 조회
+      tags:
+        - Log
+      parameters:
+        - $ref: '#/components/parameters/eventNo'
+      responses:
+        '200':
+          description: OK
+  /logs/search:
+    get:
+      summary: Log 검색
+      tags:
+        - Log
+      responses:
+        '200':
+          description: OK
+
+components:
+  schemas:
+    Log:
+      type: object
+      properties:
+        type:
+          type: string
+          example: "imp / clk"
+        value:
+          type: string
+  parameters:
+    eventNo:
+      required: true
+      name: userNo
+      in: path
+      schema:
+        type: integer
+        example: 11

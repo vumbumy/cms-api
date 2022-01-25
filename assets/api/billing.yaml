@@ -4,19 +4,40 @@ info:
   version: "1.0.0"
 tags:
   - name: Balance
+    description: 잔액
   - name: Transaction
+    description: 거래 처리
   - name: Credit
+    description: 서비스 포인트
   - name: Invoice
+    description: 거래 송장
 paths:
-  /balance:
-    post:
-      summary: Balance 등록
+  /balances:
+    get:
+      summary: 잔액 조회
       tags:
         - Balance
+      parameters:
+        - $ref: '#/components/parameters/userNo'
       responses:
         '200':
           description: OK
   /transactions:
+    get:
+      summary: 거래 내역 조회
+      tags:
+        - Transaction
+      parameters:
+        - $ref: '#/components/parameters/userNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
     post:
       summary: Transaction 등록
       tags:
@@ -24,6 +45,12 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
   /transactions/{transactionNo}:
     get:
       summary: Transaction 조회
@@ -34,31 +61,50 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
   /credits:
+    get:
+      summary: 포인트 처리 내역 조회
+      tags:
+        - Credit
+      parameters:
+        - $ref: '#/components/parameters/userNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Credit'
     post:
-      summary: Credit 등록
+      summary: Credit 수입 및 지출
       tags:
         - Credit
       responses:
         '200':
           description: OK
-    put:
-      summary: Credit 수정
-      tags:
-        - Credit
-      responses:
-        '200':
-          description: OK
-    delete:
-      summary: Credit 삭제
-      tags:
-        - Credit
-      responses:
-        '200':
-          description: OK
+#    put:
+#      summary: Credit 수정
+#      tags:
+#        - Credit
+#      responses:
+#        '200':
+#          description: OK
+#    delete:
+#      summary: Credit 삭제
+#      tags:
+#        - Credit
+#      responses:
+#        '200':
+#          description: OK
   /credits/{creditNo}:
     get:
-      summary: Credit 조회
+      summary: 포인트 처리 내역 상세 조회
       tags:
         - Credit
       parameters:
@@ -66,7 +112,26 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+                schema:
+                  $ref: '#/components/schemas/Credit'
   /invoices:
+    get:
+      summary: Invoice 목록
+      tags:
+        - Invoice
+      parameters:
+        - $ref: '#/components/parameters/userNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invoice'
     post:
       summary: Invoice 등록
       tags:
@@ -98,8 +163,45 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
 
 components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        userNo:
+          type: string
+          example: 11
+        value:
+          type: Integer
+          example: 10004
+        balance:
+          type: Integer
+          example: 100005
+    Invoice:
+      type: object
+      properties:
+        userNo:
+          type: string
+          example: 11
+        status:
+          type: string
+          example: "pending"
+    Credit:
+      type: object
+      properties:
+        userNo:
+          type: string
+          example: 11
+        value:
+          type: Integer
+          example: 1003
+        expired:
+          type: Integer
   parameters:
     userNo:
       required: true

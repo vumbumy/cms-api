@@ -24,6 +24,7 @@ paths:
         '200':
           description: OK
   /tags/search:
+  # GET과 별도로 분리가 필요할까?
     post:
       summary: Tag 검색
       tags:

@@ -13,8 +13,8 @@ import Content from './assets/api/content.yaml'
 import Billing from './assets/api/billing.yaml'
 import Category from './assets/api/category.yaml'
 import Constant from './assets/api/constant.yaml'
-import Event from './assets/api/event.yaml'
-import Process from './assets/api/process.yaml'
+import Log from 'assets/api/log.yaml'
+import Event from 'assets/api/event.yaml'
 
 export default function App() {
   return (
@@ -39,11 +39,11 @@ export default function App() {
             <TabPane tab="Constant" key="6">
               <SwaggerUI url={Constant} />
             </TabPane>
-            <TabPane tab="Event" key="7">
-              <SwaggerUI url={Event} />
+            <TabPane tab="Log" key="7">
+              <SwaggerUI url={Log} />
             </TabPane>
-            <TabPane tab="Process" key="8">
-              <SwaggerUI url={Process} />
+            <TabPane tab="Event" key="8">
+              <SwaggerUI url={Event} />
             </TabPane>
           </Tabs>
         </Col>
