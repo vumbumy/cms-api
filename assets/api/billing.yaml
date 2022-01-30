@@ -206,7 +206,7 @@ components:
     userNo:
       required: true
       name: userNo
-      in: path
+      in: query
       schema:
         type: integer
         example: 11

@@ -8,18 +8,27 @@ tags:
 paths:
   /logs:
     post:
-      summary: Log 등록
+      summary: Log 검색
       tags:
         - Log
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Log'
       responses:
         '200':
           description: OK
+    get:
+      summary: Log 조회
+      tags:
+        - Log
+      parameters:
+        - $ref: '#/components/parameters/userNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Log'
   /logs/{eventNo}:
     get:
       summary: Log 조회
@@ -30,8 +39,14 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Log'
   /logs/search:
-    get:
+    post:
       summary: Log 검색
       tags:
         - Log
@@ -52,8 +67,15 @@ components:
   parameters:
     eventNo:
       required: true
-      name: userNo
+      name: eventNo
       in: path
+      schema:
+        type: integer
+        example: 333
+    userNo:
+      required: true
+      name: userNo
+      in: query
       schema:
         type: integer
         example: 11

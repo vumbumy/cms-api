@@ -42,6 +42,8 @@ paths:
       summary: KPI 목록
       tags:
         - KPI
+      parameters:
+        - $ref: '#/components/parameters/groupNo'
       responses:
         '200':
           description: OK
@@ -70,6 +72,8 @@ paths:
       summary: Rule 목록
       tags:
         - Rule
+      parameters:
+        - $ref: '#/components/parameters/groupNo'
       responses:
         '200':
           description: OK
@@ -98,6 +102,8 @@ paths:
       summary: Notice 목록
       tags:
         - Notice
+      parameters:
+        - $ref: '#/components/parameters/groupNo'
       responses:
         '200':
           description: OK
@@ -166,6 +172,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition'
+
   parameters:
     hashCode:
       name: code
@@ -195,3 +202,10 @@ components:
       schema:
         type: integer
         example: 3
+    groupNo:
+      required: true
+      name: groupNo
+      in: query
+      schema:
+        type: integer
+        example: 202

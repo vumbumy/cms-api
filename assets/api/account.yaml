@@ -20,7 +20,7 @@ paths:
         - Inflow
       requestBody:
         required: true
-        content: 
+        content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
@@ -34,7 +34,7 @@ paths:
         - Inflow
       requestBody:
         required: true
-        content: 
+        content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
@@ -57,7 +57,7 @@ paths:
       tags:
         - Account
       requestBody:
-        content: 
+        content:
           application/json:
             schema:
               $ref: '#/components/schemas/FindForm'
@@ -83,7 +83,7 @@ paths:
       tags:
         - Account
       requestBody:
-        content: 
+        content:
           application/json:
             schema:
               $ref: '#/components/schemas/FindForm'
@@ -138,6 +138,8 @@ paths:
     get:
       tags:
         - User
+      parameters:
+        - $ref: '#/components/parameters/status'
       responses:
         '200':
           description: OK
@@ -164,7 +166,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-      
+
 components:
   schemas:
     User:
@@ -220,3 +222,10 @@ components:
       schema:
         type: integer
         example: 11
+    status:
+      required: true
+      name: status
+      in: query
+      schema:
+        type: string
+        example: black
