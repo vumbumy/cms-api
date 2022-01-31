@@ -11,7 +11,7 @@ on:
     types: [closed]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Setup repo
@@ -45,6 +45,3 @@ jobs:
           source: "./web-build/*"
           target: "~/service/naim-cms/swagger/"
           strip_components: 1
-
-#  deploy:
-#    runs-on: self-hosted
