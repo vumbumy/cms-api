@@ -13,8 +13,8 @@ import Content from './assets/api/content.yaml'
 import Billing from './assets/api/billing.yaml'
 import Category from './assets/api/category.yaml'
 import Constant from './assets/api/constant.yaml'
-import Log from 'assets/api/log.yaml'
-import Event from 'assets/api/event.yaml'
+import Log from './assets/api/log.yaml'
+import Event from './assets/api/event.yaml'
 
 export default function App() {
   return (
