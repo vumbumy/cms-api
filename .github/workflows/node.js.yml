@@ -43,7 +43,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           source: "./web-build/*"
-          target: "~/cms-api/"
+          target: "~/service/naim-cms/swagger/"
           strip_components: 1
 
 #  deploy:
