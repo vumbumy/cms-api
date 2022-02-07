@@ -1,2 +1,2 @@
-# [CMS Swagger](https://swagger.vumy.kr)
+# [CMS Swagger](http://swagger.vumy.kr)
 
