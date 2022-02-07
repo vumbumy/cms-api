@@ -54,15 +54,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Organization'
-  /orgs/{orgNo}/permissions:
-    put:
-      tags:
-        - Organization
-      parameters:
-        - $ref: '#/components/parameters/orgNo'
-      responses:
-        '200':
-          description: OK
+#  /orgs/{orgNo}/permissions:
+#    put:
+#      tags:
+#        - Organization
+#      parameters:
+#        - $ref: '#/components/parameters/orgNo'
+#      responses:
+#        '200':
+#          description: OK
   /groups:
     post:
       tags:
@@ -107,13 +107,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Group'
-  /groups/{groupNo}/permissions:
-    put:
-      tags:
-        - Group
-      responses:
-        '200':
-          description: OK
+#  /groups/{groupNo}/permissions:
+#    put:
+#      tags:
+#        - Group
+#      responses:
+#        '200':
+#          description: OK
   /projects:
     post:
       tags:
@@ -158,15 +158,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
-  /projects/{projectNo}/permissions:
-    put:
-      tags:
-        - Project
-      parameters:
-        - $ref: '#/components/parameters/projectNo'
-      responses:
-        '200':
-          description: OK
+#  /projects/{projectNo}/permissions:
+#    put:
+#      tags:
+#        - Project
+#      parameters:
+#        - $ref: '#/components/parameters/projectNo'
+#      responses:
+#        '200':
+#          description: OK
 
 components:
   schemas:
